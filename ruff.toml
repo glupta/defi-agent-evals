@@ -9,7 +9,7 @@ target-version = "py312"
 line-length = 120
 
 [lint]
-select = ["E722", "BLE001", "S110", "S112", "S608"]
+select = ["E722", "BLE001", "S110", "S112", "S608", "F"]  # F: pyflakes (undefined names, unused imports)
 
 [lint.per-file-ignores]
 "tests/**" = ["BLE001"]

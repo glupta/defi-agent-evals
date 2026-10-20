@@ -9,8 +9,10 @@ from pathlib import Path
 from typing import Any
 
 from claude_agent_sdk import (
+    AssistantMessage,
     ClaudeAgentOptions,
     ResultMessage,
+    ToolUseBlock,
     create_sdk_mcp_server,
     query,
     tool,
@@ -116,11 +118,11 @@ async def run_task(task: Task, model: str, condition: str) -> dict[str, Any]:
     async for msg in query(prompt=prompt_for(task), options=options(model, condition)):
         if isinstance(msg, ResultMessage):
             result = msg
-        elif type(msg).__name__ == "AssistantMessage":
+        elif isinstance(msg, AssistantMessage):
             tool_calls += sum(
                 1
                 for b in msg.content
-                if type(b).__name__ == "ToolUseBlock" and b.name != "StructuredOutput"  # output channel, not a tool
+                if isinstance(b, ToolUseBlock) and b.name != "StructuredOutput"  # output channel, not a tool
             )
     if result is None:
         raise RuntimeError(f"{task.id}: no result message")
