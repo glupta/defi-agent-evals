@@ -1,7 +1,7 @@
 # Spec: DeFi analyst agent with deterministic verifiers (v1)
 
 ## Constitution
-Studio rules govern (RULES.md): no fabricated data, no secrets in the repo, no money movement.
+No fabricated data, no secrets in the repo, no wallets or money movement.
 Grading is code, never model judgment. Every behavior change ships a failing-then-passing test.
 Simplicity: one package, standard library plus the Claude Agent SDK.
 
