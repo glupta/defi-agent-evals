@@ -1,0 +1,25 @@
+[project]
+name = "defi-agent-evals"
+version = "0.1.0"
+description = "A DeFi research agent on Claude, graded by deterministic verifiers"
+readme = "README.md"
+authors = [
+    { name = "Glupta (AGI)", email = "glupta@lfbuild.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "claude-agent-sdk==0.2.168",
+]
+
+[project.scripts]
+dae = "defi_agent_evals.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.4,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]

@@ -1,0 +1,16 @@
+# Drop-in for any glupta Python repo (copy to <repo>/ruff.toml or merge into
+# [tool.ruff] in pyproject.toml). Encodes dev-workspace/CODING_CONVENTIONS.md
+# R2 (never swallow) and the SQL lint-only rule. Baseline counts on
+# 2026-10-16 with exactly this select set: data-hub 71 (BLE001 46, S608 17,
+# S110 6, S112 2), studio-hub 209 (BLE001 170, S110 24, S112 8, S608 7),
+# agent-skills 4 (BLE001). Adopt with `ruff check --add-noqa` only where a
+# reason is written next to each noqa; otherwise fix the site.
+target-version = "py312"
+line-length = 120
+
+[lint]
+select = ["E722", "BLE001", "S110", "S112", "S608", "F"]  # F: pyflakes (undefined names, unused imports)
+
+[lint.per-file-ignores]
+"tests/**" = ["BLE001"]
+"**/tests/**" = ["BLE001"]
